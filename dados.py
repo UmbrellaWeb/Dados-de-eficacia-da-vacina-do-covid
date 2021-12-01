@@ -1,7 +1,9 @@
+#abrindo aquivo e lendo para analise de dodos
 ARQ = open('dados.txt', 'r')
 linha = ARQ.readlines()
 QTD = int(linha[0])
 parti = []
+#modificando a lista removendo o "\n" que vem ao ler a lista dados
 for li in linha:
     parti.append(li.replace('\n', ''))
     pessoas = []
@@ -11,6 +13,8 @@ for li in linha:
 print (pessoas)
 ARQ.close()
 
+
+#função para definir o percentual de generos
 def Genero ():
     genero =[]
     cont = 0
@@ -25,6 +29,7 @@ def Genero ():
     print ("-> O percentual de participantes Femininos é de: {}%\n-> A Percentual de parcipantes Maculinos é de: {}%".format(F,M))
     
 
+#pecentual das idades dividindas em Jovem, Adulto, Idoso.
 def idades():
     idade= []
     for JAV in pessoas:
@@ -44,6 +49,7 @@ def idades():
     print (f'-> A pocentagem de Jovens é de {J}%\n-> A de adulto é {A}%\n-> A de idosos é {V}%')
     
 
+#percentual de candidatos que receberam vacina ou placedo.
 def VacinaPlacebo():
     PV = []
     for vp in pessoas:
@@ -56,6 +62,7 @@ def VacinaPlacebo():
     print (f'-> A pocentagem de quen recebeu a "Vacina" é de: {V}%\n-> e para os que receberam "Placebo" e de: {P}%')
     
 
+#percentual se contraiu ou não covid
 def SecontrauCovid():
     sn = []
     for ns in pessoas:
@@ -68,6 +75,7 @@ def SecontrauCovid():
     print (f'-> A pocentagem de infectados é de {s}% para "Sim" e {n}% para "Não"')
 
 
+#pecentual da eficacia da vacina.
 def eficaciadaVacina():   
     a = b =  0
     for eficacia in pessoas:
@@ -80,6 +88,9 @@ def eficaciadaVacina():
     print (f'-> A eficacia de vacina é de: {round(eficacia1,2)}%')
 
 
+#percentual da eficacia da vacina em jovens, adutos e idosos.
+#aqui usar o len() foi uma forma mais rapida e direto doque usar "cont +1" pois ele dava um error de ZeroDivisionError.
+# para resolver isso era preciso usar "try ZeroDivisionError", porem prefeerir fazerde uma forma mais simplis.
 def pocentagemIdades():
     #Jovem
     Jp = len([id for id in pessoas if int(id[1])<=19 and id[2]== 'P' and id[3]=='S'])
@@ -101,7 +112,7 @@ def pocentagemIdades():
 
 
 
-
+#percentual da eficacia da vacina por genero.
 def pocengener():
     #Mulher 
     FP = len([PV for PV in pessoas if PV[0] == 'F' and PV[2] == 'P' and PV[3] == 'S'])    
